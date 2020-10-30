@@ -331,12 +331,47 @@
         } ]
       }
     },
-    "/sensor-metric/last/plate/position/plate" : {
+    "/sensor-metric/last/plate/PlateNumber" : {
+      "get" : {
+        "tags" : [ "telemetrics" ],
+        "summary" : "Get last all telemetry for a plate number",
+        "parameters" : [ {
+          "name" : "PlateNumber",
+          "in" : "query",
+          "description" : "Plate value. It's not the id of the vehicle, it is the value of the plate.",
+          "required" : true,
+          "style" : "form",
+          "explode" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "content" : {
+              "aplication/json" : {
+                "schema" : {
+                  "$ref" : "#/definitions/FullTelemetryDTO"
+                }
+              }
+            }
+          },
+          "422" : {
+            "description" : "The given data was invalid"
+          },
+          "400" : {
+            "description" : "Object not found or cannot access to this sensor metrics"
+          }
+        },
+        "security" : [ {
+          "ApiKey" : [ ]
+        } ]
+      }
+    },
+    "/sensor-metric/last/plate/position/PlateNumber" : {
       "get" : {
         "tags" : [ "telemetrics" ],
         "summary" : "Get last position for a plate",
         "parameters" : [ {
-          "name" : "plate",
+          "name" : "PlateNumber",
           "in" : "query",
           "description" : "Plate value. It's not the id of the vehicle, it is the value of the plate.",
           "required" : true,
@@ -401,12 +436,12 @@
         } ]
       }
     },
-    "/sensor-metric/last/plate/temperature/plate" : {
+    "/sensor-metric/last/plate/temperature/PlateNumber" : {
       "get" : {
         "tags" : [ "telemetrics" ],
         "summary" : "Get last temperature read for a plate",
         "parameters" : [ {
-          "name" : "plate",
+          "name" : "PlateNumber",
           "in" : "query",
           "description" : "Plate value. It's not the id of the vehicle, it is the value of the plate.",
           "required" : true,
@@ -471,12 +506,12 @@
         } ]
       }
     },
-    "/sensor-metric/last/plate/humidity/plate" : {
+    "/sensor-metric/last/plate/humidity/PlateNumber" : {
       "get" : {
         "tags" : [ "telemetrics" ],
         "summary" : "The last temperature read of the plate",
         "parameters" : [ {
-          "name" : "plate",
+          "name" : "PlateNumber",
           "in" : "query",
           "description" : "Plate value. It's not the id of the vehicle, it is the value of the plate.",
           "required" : true,
