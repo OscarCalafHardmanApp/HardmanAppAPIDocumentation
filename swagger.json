@@ -15,6 +15,13 @@
   },
   "host" : "my-api.hardman.app",
   "basePath" : "/api/v3",
+  "servers" : [ {
+    "description" : "SwaggerHub API Auto Mocking",
+    "url" : "https://virtserver.swaggerhub.com/HelloHardman/HardmanAppIntegration/v3"
+  }, {
+    "description" : "Hardman API description",
+    "url" : "https://my-api.hardman.app/v3"
+  } ],
   "tags" : [ {
     "name" : "shipments",
     "description" : "Everything about shipments"
@@ -1019,12 +1026,5 @@
     "description" : "Find out more about Hardman.app",
     "url" : "http://hardman.app"
   },
-  "schemes" : [ "https" ],
-  "servers" : [ {
-    "description" : "SwaggerHub API Auto Mocking",
-    "url" : "https://virtserver.swaggerhub.com/HelloHardman/HardmanAppIntegration/v3"
-  }, {
-    "description" : "Hardman API description",
-    "url" : "https://my-api.hardman.app/v3"
-  } ]
+  "schemes" : [ "https" ]
 }
