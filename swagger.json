@@ -413,7 +413,71 @@
         "parameters" : [ {
           "name" : "plateId",
           "in" : "query",
-          "description" : "The plate of the truck",
+          "description" : "The last position of the truck",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "produces" : [ "aplication/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "type" : "object",
+              "items" : "#/definitions/PositionDTO"
+            },
+            "422" : {
+              "description" : "The given data was invalid"
+            },
+            "400" : {
+              "description" : "Object not found or cannot access to this sensor metrics"
+            }
+          }
+        },
+        "security" : [ {
+          "ApiKey" : [ ]
+        } ]
+      }
+    },
+    "/telemetrics/plate/temperature/plateId" : {
+      "get" : {
+        "tags" : [ "telemetrics" ],
+        "summary" : "Get last position for a plateId",
+        "parameters" : [ {
+          "name" : "plateId",
+          "in" : "query",
+          "description" : "The last temperature read of the plate",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "produces" : [ "aplication/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "type" : "object",
+              "items" : "#/definitions/PositionDTO"
+            },
+            "422" : {
+              "description" : "The given data was invalid"
+            },
+            "400" : {
+              "description" : "Object not found or cannot access to this sensor metrics"
+            }
+          }
+        },
+        "security" : [ {
+          "ApiKey" : [ ]
+        } ]
+      }
+    },
+    "/telemetrics/plate/humidity/plateId" : {
+      "get" : {
+        "tags" : [ "telemetrics" ],
+        "summary" : "Get last position for a plateId",
+        "parameters" : [ {
+          "name" : "plateId",
+          "in" : "query",
+          "description" : "The last temperature read of the plate",
           "required" : true,
           "type" : "string"
         } ],
