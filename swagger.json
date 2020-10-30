@@ -462,16 +462,19 @@
         "responses" : {
           "200" : {
             "description" : "successful operation",
-            "schema" : {
-              "type" : "object",
-              "items" : "#/definitions/PositionDTO"
-            },
-            "422" : {
-              "description" : "The given data was invalid"
-            },
-            "400" : {
-              "description" : "Object not found or cannot access to this sensor metrics"
+            "content" : {
+              "aplication/json" : {
+                "schema" : {
+                  "$ref" : "#/definitions/TelemetricDTO"
+                }
+              }
             }
+          },
+          "422" : {
+            "description" : "The given data was invalid"
+          },
+          "400" : {
+            "description" : "Object not found or cannot access to this sensor metrics"
           }
         },
         "security" : [ {
@@ -494,16 +497,19 @@
         "responses" : {
           "200" : {
             "description" : "successful operation",
-            "schema" : {
-              "type" : "object",
-              "items" : "#/definitions/PositionDTO"
-            },
-            "422" : {
-              "description" : "The given data was invalid"
-            },
-            "400" : {
-              "description" : "Object not found or cannot access to this sensor metrics"
+            "content" : {
+              "aplication/json" : {
+                "schema" : {
+                  "$ref" : "#/definitions/TelemetricDTO"
+                }
+              }
             }
+          },
+          "422" : {
+            "description" : "The given data was invalid"
+          },
+          "400" : {
+            "description" : "Object not found or cannot access to this sensor metrics"
           }
         },
         "security" : [ {
