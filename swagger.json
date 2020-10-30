@@ -429,8 +429,7 @@
           "200" : {
             "description" : "successful operation",
             "schema" : {
-              "type" : "object",
-              "items" : "#/definitions/PositionDTO"
+              "$ref" : "#/definitions/PositionDTO"
             },
             "422" : {
               "description" : "The given data was invalid"
