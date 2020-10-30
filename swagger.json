@@ -1130,7 +1130,7 @@
         }
       }
     },
-    "FullTelemetricDTO" : {
+    "FullTelemetryDTO" : {
       "type" : "object",
       "properties" : {
         "position" : {
