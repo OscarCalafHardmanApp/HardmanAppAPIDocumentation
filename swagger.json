@@ -426,15 +426,17 @@
         } ],
         "responses" : {
           "200" : {
-            "description" : "The given data was invalid",
+            "description" : "successful operation",
             "content" : {
               "aplication/json" : {
                 "schema" : {
                   "$ref" : "#/definitions/FullTelemetryDTO"
                 }
               }
-            },
-            "422" : null
+            }
+          },
+          "422" : {
+            "description" : "The given data was invalid"
           },
           "400" : {
             "description" : "Object not found or cannot access to this sensor metrics"
