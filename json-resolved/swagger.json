@@ -331,12 +331,12 @@
         } ]
       }
     },
-    "/telemetrics/plate/position/plateId" : {
+    "/sensor-metric/last/plate/position/plate" : {
       "get" : {
         "tags" : [ "telemetrics" ],
-        "summary" : "Get last position for a plateId",
+        "summary" : "Get last position for a plate",
         "parameters" : [ {
-          "name" : "plateId",
+          "name" : "plate",
           "in" : "query",
           "description" : "Plate value. It's not the id of the vehicle, it is the value of the plate.",
           "required" : true,
@@ -345,7 +345,20 @@
         } ],
         "responses" : {
           "200" : {
-            "description" : "successful operation"
+            "description" : "successful operation",
+            "content" : {
+              "aplication/json" : {
+                "schema" : {
+                  "$ref" : "#/definitions/PositionDTO"
+                }
+              }
+            }
+          },
+          "422" : {
+            "description" : "The given data was invalid"
+          },
+          "400" : {
+            "description" : "Object not found or cannot access to this sensor metrics"
           }
         },
         "security" : [ {
@@ -353,12 +366,47 @@
         } ]
       }
     },
-    "/telemetrics/plate/temperature/plateId" : {
+    "/sensor-metric/last/device/position/deviceId" : {
       "get" : {
         "tags" : [ "telemetrics" ],
-        "summary" : "Get last temperature read for a plateId",
+        "summary" : "Get last position for a deviceId",
         "parameters" : [ {
-          "name" : "plateId",
+          "name" : "deviceId",
+          "in" : "query",
+          "description" : "The deviceId",
+          "required" : true,
+          "style" : "form",
+          "explode" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "content" : {
+              "aplication/json" : {
+                "schema" : {
+                  "$ref" : "#/definitions/PositionDTO"
+                }
+              }
+            }
+          },
+          "422" : {
+            "description" : "The given data was invalid"
+          },
+          "400" : {
+            "description" : "Object not found or cannot access to this sensor metrics"
+          }
+        },
+        "security" : [ {
+          "ApiKey" : [ ]
+        } ]
+      }
+    },
+    "/sensor-metric/last/plate/temperature/plate" : {
+      "get" : {
+        "tags" : [ "telemetrics" ],
+        "summary" : "Get last temperature read for a plate",
+        "parameters" : [ {
+          "name" : "plate",
           "in" : "query",
           "description" : "Plate value. It's not the id of the vehicle, it is the value of the plate.",
           "required" : true,
@@ -367,7 +415,20 @@
         } ],
         "responses" : {
           "200" : {
-            "description" : "successful operation"
+            "description" : "successful operation",
+            "content" : {
+              "aplication/json" : {
+                "schema" : {
+                  "$ref" : "#/definitions/TelemetricDTO"
+                }
+              }
+            }
+          },
+          "422" : {
+            "description" : "The given data was invalid"
+          },
+          "400" : {
+            "description" : "Object not found or cannot access to this sensor metrics"
           }
         },
         "security" : [ {
@@ -375,12 +436,47 @@
         } ]
       }
     },
-    "/telemetrics/plate/humidity/plateId" : {
+    "/sensor-metric/last/device/temperature/deviceId" : {
+      "get" : {
+        "tags" : [ "telemetrics" ],
+        "summary" : "Get last temperature read for a device",
+        "parameters" : [ {
+          "name" : "deviceId",
+          "in" : "query",
+          "description" : "The deviceId",
+          "required" : true,
+          "style" : "form",
+          "explode" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "content" : {
+              "aplication/json" : {
+                "schema" : {
+                  "$ref" : "#/definitions/TelemetricDTO"
+                }
+              }
+            }
+          },
+          "422" : {
+            "description" : "The given data was invalid"
+          },
+          "400" : {
+            "description" : "Object not found or cannot access to this sensor metrics"
+          }
+        },
+        "security" : [ {
+          "ApiKey" : [ ]
+        } ]
+      }
+    },
+    "/sensor-metric/last/plate/humidity/plate" : {
       "get" : {
         "tags" : [ "telemetrics" ],
         "summary" : "The last temperature read of the plate",
         "parameters" : [ {
-          "name" : "plateId",
+          "name" : "plate",
           "in" : "query",
           "description" : "Plate value. It's not the id of the vehicle, it is the value of the plate.",
           "required" : true,
@@ -389,7 +485,55 @@
         } ],
         "responses" : {
           "200" : {
-            "description" : "successful operation"
+            "description" : "successful operation",
+            "content" : {
+              "aplication/json" : {
+                "schema" : {
+                  "$ref" : "#/definitions/TelemetricDTO"
+                }
+              }
+            }
+          },
+          "422" : {
+            "description" : "The given data was invalid"
+          },
+          "400" : {
+            "description" : "Object not found or cannot access to this sensor metrics"
+          }
+        },
+        "security" : [ {
+          "ApiKey" : [ ]
+        } ]
+      }
+    },
+    "/sensor-metric/last/device/humidity/deviceId" : {
+      "get" : {
+        "tags" : [ "telemetrics" ],
+        "summary" : "The last temperature read for a device",
+        "parameters" : [ {
+          "name" : "deviceId",
+          "in" : "query",
+          "description" : "The deviceId.",
+          "required" : true,
+          "style" : "form",
+          "explode" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "content" : {
+              "aplication/json" : {
+                "schema" : {
+                  "$ref" : "#/definitions/TelemetricDTO"
+                }
+              }
+            }
+          },
+          "422" : {
+            "description" : "The given data was invalid"
+          },
+          "400" : {
+            "description" : "Object not found or cannot access to this sensor metrics"
           }
         },
         "security" : [ {
