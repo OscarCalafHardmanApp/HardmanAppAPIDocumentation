@@ -1,0 +1,1009 @@
+{
+  "openapi" : "3.0.0",
+  "info" : {
+    "description" : "HardmanApp API\n",
+    "version" : "v3",
+    "title" : "HardmanApp API documentation",
+    "termsOfService" : "http://hardman.app",
+    "contact" : {
+      "email" : "hello@hardman.app"
+    },
+    "license" : {
+      "name" : "Apache 2.0",
+      "url" : "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "host" : "my-api.hardman.app",
+  "basePath" : "/api/v3",
+  "tags" : [ {
+    "name" : "shipments",
+    "description" : "Everything about shipments"
+  }, {
+    "name" : "routes",
+    "description" : "Everything about routes"
+  }, {
+    "name" : "phases",
+    "description" : "Everything about phases"
+  }, {
+    "name" : "telemetrics",
+    "description" : "Everythin about telemetrics"
+  } ],
+  "paths" : {
+    "/travels" : {
+      "get" : {
+        "tags" : [ "routes" ],
+        "summary" : "Get all the routes",
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "content" : null,
+            "application/json" : {
+              "schema" : {
+                "type" : "array",
+                "items" : {
+                  "$ref" : "#/definitions/RouteSimple"
+                }
+              }
+            }
+          },
+          "405" : {
+            "description" : "Invalid input"
+          }
+        },
+        "security" : [ {
+          "ApiKey" : [ ]
+        } ]
+      },
+      "post" : {
+        "tags" : [ "routes" ],
+        "summary" : "Create a route",
+        "operationId" : "createRoute",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "Route object that needs to be added",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/Route"
+          }
+        } ],
+        "responses" : {
+          "405" : {
+            "description" : "Validation exception"
+          }
+        },
+        "security" : [ {
+          "ApiKey" : [ ]
+        } ]
+      },
+      "put" : {
+        "tags" : [ "routes" ],
+        "summary" : "Modify a route",
+        "operationId" : "updateRoute",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "Route object that needs to be updated",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/Route"
+          }
+        } ],
+        "responses" : {
+          "402" : {
+            "description" : "Object not found"
+          },
+          "405" : {
+            "description" : "Validation exception"
+          }
+        },
+        "security" : [ {
+          "ApiKey" : [ ]
+        } ]
+      }
+    },
+    "/travels/id" : {
+      "get" : {
+        "tags" : [ "routes" ],
+        "summary" : "Get the route with a specific id",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "query",
+          "description" : "The route id",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/RouteSimple"
+            }
+          },
+          "405" : {
+            "description" : "Invalid input"
+          }
+        },
+        "security" : [ {
+          "ApiKey" : [ ]
+        } ]
+      },
+      "delete" : {
+        "tags" : [ "routes" ],
+        "summary" : "Delete a route",
+        "operationId" : "deleteRoute",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "query",
+          "description" : "The route id",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation"
+          },
+          "402" : {
+            "description" : "Object not found"
+          },
+          "405" : {
+            "description" : "Validation exception"
+          }
+        },
+        "security" : [ {
+          "ApiKey" : [ ]
+        } ]
+      }
+    },
+    "/phases/routeId" : {
+      "get" : {
+        "tags" : [ "phases" ],
+        "summary" : "Get all the phases for a specific route",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "routeId",
+          "in" : "query",
+          "description" : "The route id",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/PhaseSimple"
+              }
+            }
+          },
+          "405" : {
+            "description" : "Invalid input"
+          }
+        },
+        "security" : [ {
+          "ApiKey" : [ ]
+        } ]
+      }
+    },
+    "/phases/routeId/phaseId" : {
+      "get" : {
+        "tags" : [ "phases" ],
+        "summary" : "Get the a specific phase for a specific route",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "routeId",
+          "in" : "query",
+          "description" : "The route id",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "phaseId",
+          "in" : "query",
+          "description" : "The phase id",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/PhaseSimple"
+            }
+          },
+          "405" : {
+            "description" : "Invalid input"
+          }
+        },
+        "security" : [ {
+          "ApiKey" : [ ]
+        } ]
+      }
+    },
+    "/phases" : {
+      "post" : {
+        "tags" : [ "phases" ],
+        "summary" : "Create a phase",
+        "operationId" : "createPhase",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "Phase object that needs to be added",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/PhaseSimple"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/Phase"
+            }
+          },
+          "405" : {
+            "description" : "Validation exception"
+          }
+        },
+        "security" : [ {
+          "ApiKey" : [ ]
+        } ]
+      },
+      "put" : {
+        "tags" : [ "phases" ],
+        "summary" : "Modify a phase",
+        "operationId" : "updatePhase",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "Phase object that needs to be updated",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/PhaseSimple"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/Phase"
+            }
+          },
+          "402" : {
+            "description" : "Object not found"
+          },
+          "405" : {
+            "description" : "Validation exception"
+          }
+        },
+        "security" : [ {
+          "ApiKey" : [ ]
+        } ]
+      }
+    },
+    "/phases/phaseId" : {
+      "get" : {
+        "tags" : [ "phases" ],
+        "summary" : "Get the a specific phase",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "phaseId",
+          "in" : "query",
+          "description" : "The phase id",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/Phase"
+            }
+          },
+          "405" : {
+            "description" : "Invalid input"
+          }
+        },
+        "security" : [ {
+          "ApiKey" : [ ]
+        } ]
+      },
+      "delete" : {
+        "tags" : [ "phases" ],
+        "summary" : "Delete a phase",
+        "operationId" : "deletePhase",
+        "parameters" : [ {
+          "name" : "phaseId",
+          "in" : "query",
+          "description" : "The phase id",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation"
+          },
+          "402" : {
+            "description" : "Object not found"
+          },
+          "405" : {
+            "description" : "Validation exception"
+          }
+        },
+        "security" : [ {
+          "ApiKey" : [ ]
+        } ]
+      }
+    },
+    "/shipments" : {
+      "get" : {
+        "tags" : [ "shipments" ],
+        "summary" : "Get all the shipments",
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/Shipment"
+              }
+            }
+          },
+          "405" : {
+            "description" : "Invalid input"
+          }
+        },
+        "security" : [ {
+          "ApiKey" : [ ]
+        } ]
+      }
+    },
+    "/shipments/internal/internal_id" : {
+      "get" : {
+        "tags" : [ "shipments" ],
+        "summary" : "Get shipment with this internal_id",
+        "produces" : [ "aplication/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "type" : "array",
+              "items" : "#/definitions/Shipment"
+            }
+          }
+        },
+        "security" : [ {
+          "ApiKey" : [ ]
+        } ]
+      }
+    },
+    "/travels/internal/reference" : {
+      "get" : {
+        "tags" : [ "routes" ],
+        "summary" : "Get route with this reference",
+        "produces" : [ "aplication/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "type" : "array",
+              "items" : "#/definitions/RouteSimple"
+            }
+          }
+        },
+        "security" : [ {
+          "ApiKey" : [ ]
+        } ]
+      }
+    },
+    "/telemetrics/plate/position/plateId" : {
+      "get" : {
+        "tags" : [ "telemetrics" ],
+        "summary" : "Get last position for a plateId",
+        "parameters" : [ {
+          "name" : "plateId",
+          "in" : "query",
+          "description" : "The plate of the truck",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "produces" : [ "aplication/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "type" : "object",
+              "items" : "#/definitions/PositionDTO"
+            },
+            "422" : {
+              "description" : "The given data was invalid"
+            },
+            "400" : {
+              "description" : "Object not found or cannot access to this sensor metrics"
+            }
+          }
+        },
+        "security" : [ {
+          "ApiKey" : [ ]
+        } ]
+      }
+    },
+    "/sensor-metricssensor-metrics?param1_key=paramKeyValue,date_start=dateFromValue,date_end=dateToValue" : {
+      "get" : {
+        "tags" : [ "telemetrics" ],
+        "summary" : {
+          "View telemetry of an object" : null
+        },
+        "produces" : [ "application/json" ],
+        "parameters" : {
+          "paramKeyValue" : {
+            "description" : "param1_key = string device/travel/shipment/regno param1_value = id of object",
+            "required" : true
+          },
+          "dateFromValue" : {
+            "description" : "datetime to start search",
+            "required" : true
+          },
+          "dateToValue" : {
+            "description" : "datetime to end search",
+            "required" : false
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/Telemetries"
+              }
+            }
+          },
+          "422" : {
+            "description" : "The given data was invalid"
+          },
+          "400" : {
+            "description" : "Object not found or cannot access to this sensor metrics"
+          }
+        },
+        "security" : [ {
+          "ApiKey" : [ ]
+        } ]
+      }
+    }
+  },
+  "securityDefinitions" : {
+    "ApiKey" : {
+      "type" : "apiKey",
+      "in" : "header",
+      "name" : "api_key"
+    }
+  },
+  "definitions" : {
+    "Route" : {
+      "type" : "object",
+      "required" : [ "id" ],
+      "allOf" : [ {
+        "$ref" : "#/definitions/RouteSimple"
+      } ],
+      "properties" : {
+        "phases" : {
+          "type" : "array",
+          "xml" : {
+            "name" : "tag",
+            "wrapped" : true
+          },
+          "items" : {
+            "$ref" : "#/definitions/Phase"
+          }
+        }
+      }
+    },
+    "RouteSimple" : {
+      "type" : "object",
+      "required" : [ "id" ],
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "write_uuid" : {
+          "type" : "string",
+          "description" : "uuid to access as Write"
+        },
+        "read_uuid" : {
+          "type" : "string",
+          "description" : "uuid to access as readOnly"
+        },
+        "name" : {
+          "type" : "string",
+          "description" : "title of short description of the route"
+        },
+        "date_start" : {
+          "type" : "string",
+          "format" : "date"
+        },
+        "date_end" : {
+          "type" : "string",
+          "format" : "date"
+        },
+        "driver" : {
+          "type" : "integer",
+          "format" : "int64",
+          "description" : "driver id"
+        },
+        "customer" : {
+          "type" : "integer",
+          "format" : "int64",
+          "description" : "customer id"
+        },
+        "price_client" : {
+          "type" : "number",
+          "description" : "the price for the client"
+        },
+        "price_driver" : {
+          "type" : "number",
+          "description" : "the price for the driver"
+        },
+        "reference" : {
+          "type" : "string",
+          "description" : "internal reference number in your systems"
+        },
+        "accepted" : {
+          "type" : "boolean",
+          "description" : "Indicate if the route has been accepted by the driver"
+        },
+        "status" : {
+          "type" : "string",
+          "description" : "the status of the route",
+          "enum" : [ "Draft", "Ready", "Running", "Finished" ]
+        },
+        "assigned_manager" : {
+          "type" : "integer",
+          "format" : "int64",
+          "description" : "user id that acts as manager"
+        },
+        "previous_status" : {
+          "type" : "string",
+          "description" : "previous state of the route",
+          "enum" : [ "Draft", "Ready", "Running", "Finished" ]
+        },
+        "custom_inputs" : {
+          "type" : "object"
+        },
+        "banner_text" : {
+          "type" : "string",
+          "description" : "Alternative to banner_html where it's not possible to show html code"
+        },
+        "banner_html" : {
+          "type" : "string",
+          "description" : "A HTML code that will be shown with the route"
+        },
+        "comments" : {
+          "type" : "string",
+          "description" : "A description fro the route"
+        }
+      },
+      "xml" : {
+        "name" : "Route"
+      }
+    },
+    "Phase" : {
+      "type" : "object",
+      "required" : [ "id" ],
+      "allOf" : [ {
+        "$ref" : "#/definitions/PhaseSimple"
+      } ],
+      "properties" : {
+        "created_at" : {
+          "type" : "string",
+          "format" : "date_time"
+        },
+        "address" : {
+          "type" : "string"
+        },
+        "intermodal" : {
+          "type" : "string"
+        }
+      }
+    },
+    "PhaseSimple" : {
+      "type" : "object",
+      "required" : [ "id", "order" ],
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "travel_id" : {
+          "type" : "integer",
+          "format" : "int64",
+          "description" : "Route Id"
+        },
+        "order" : {
+          "type" : "integer",
+          "format" : "int64",
+          "description" : "Order. The phases can be re ordered using this attribute"
+        },
+        "ambit" : {
+          "type" : "integer",
+          "format" : "int64",
+          "description" : "Ambit. Security term"
+        },
+        "name" : {
+          "type" : "string",
+          "example" : "doggie"
+        },
+        "phasename" : {
+          "type" : "string",
+          "description" : "The name of the phase. If null or blank we will use the directionl."
+        },
+        "arrived" : {
+          "type" : "object"
+        },
+        "done" : {
+          "type" : "object"
+        }
+      },
+      "xml" : {
+        "name" : "Phase"
+      }
+    },
+    "Shipment" : {
+      "type" : "object",
+      "required" : [ "id" ],
+      "allOf" : [ {
+        "$ref" : "#/definitions/ShipmentSimple"
+      } ],
+      "properties" : {
+        "origin" : {
+          "type" : "object",
+          "$ref" : "#/definitions/Address"
+        },
+        "destination" : {
+          "type" : "object",
+          "$ref" : "#/definitions/Address"
+        }
+      }
+    },
+    "ShipmentSimple" : {
+      "type" : "object",
+      "required" : [ "id" ],
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "write_uuid" : {
+          "type" : "string",
+          "description" : "uuid to access as Write"
+        },
+        "read_uuid" : {
+          "type" : "string",
+          "description" : "uuid to access as readOnly"
+        },
+        "travel_id" : {
+          "type" : "integer",
+          "format" : "int64",
+          "description" : "Route Id"
+        },
+        "origin_id" : {
+          "type" : "integer",
+          "format" : "int64",
+          "description" : "Origin Address Id"
+        },
+        "destination_id" : {
+          "type" : "integer",
+          "format" : "int64",
+          "description" : "Destination Address Id"
+        },
+        "comments" : {
+          "type" : "string"
+        },
+        "notes_text" : {
+          "type" : "string",
+          "description" : "Alternative to html where it's not possible to show html code"
+        },
+        "notes_html" : {
+          "type" : "string",
+          "description" : "A HTML code that will be shown with the object"
+        },
+        "internal_id" : {
+          "type" : "string",
+          "description" : "internal reference number in your systems"
+        },
+        "goods" : {
+          "type" : "string",
+          "description" : "A description of the goods"
+        },
+        "origin_eda" : {
+          "type" : "string",
+          "format" : "datetime"
+        },
+        "origin_eta" : {
+          "type" : "string",
+          "format" : "datetime"
+        },
+        "destination_eda" : {
+          "type" : "string",
+          "format" : "datetime"
+        },
+        "destination_eta" : {
+          "type" : "string",
+          "format" : "datetime"
+        },
+        "origin_arrived" : {
+          "type" : "string",
+          "format" : "datetime"
+        },
+        "origin_done" : {
+          "type" : "string",
+          "format" : "datetime"
+        },
+        "destination_arrived" : {
+          "type" : "string",
+          "format" : "datetime"
+        },
+        "destination_done" : {
+          "type" : "string",
+          "format" : "datetime"
+        },
+        "created_at" : {
+          "type" : "string",
+          "format" : "datetime"
+        },
+        "updated_at" : {
+          "type" : "string",
+          "format" : "datetime"
+        },
+        "details" : {
+          "type" : "string"
+        }
+      },
+      "xml" : {
+        "name" : "ShipmenSimple"
+      }
+    },
+    "Address" : {
+      "type" : "object",
+      "required" : [ "id" ],
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "address" : {
+          "type" : "string",
+          "description" : "Full address"
+        },
+        "city" : {
+          "type" : "string"
+        },
+        "country_id" : {
+          "type" : "integer"
+        },
+        "postal_code" : {
+          "type" : "string"
+        },
+        "coordinates" : {
+          "type" : "string"
+        },
+        "phone" : {
+          "type" : "string"
+        },
+        "email" : {
+          "type" : "string"
+        },
+        "contact_name" : {
+          "type" : "string"
+        },
+        "language" : {
+          "type" : "string"
+        },
+        "scheduled_time" : {
+          "type" : "string"
+        },
+        "ambit_id" : {
+          "type" : "integer",
+          "format" : "int64",
+          "description" : "Ambit Id"
+        },
+        "enabled_slots" : {
+          "type" : "boolean"
+        },
+        "timetable_start_time" : {
+          "type" : "string",
+          "format" : "time"
+        },
+        "interval" : {
+          "type" : "string",
+          "format" : "time"
+        },
+        "is_active" : {
+          "type" : "boolean",
+          "descriptions" : "You only can use the address if it's active"
+        }
+      },
+      "xml" : {
+        "name" : "Address"
+      }
+    },
+    "Telemetries" : {
+      "type" : "array",
+      "properties" : {
+        "humidities" : {
+          "type" : "array",
+          "properties" : {
+            "id" : "int",
+            "value" : "float",
+            "type" : "string",
+            "created_at" : "date_time"
+          }
+        },
+        "temperatures" : {
+          "type" : "array",
+          "properties" : {
+            "id" : "int",
+            "value" : "float",
+            "type" : "string",
+            "created_at" : "date_time"
+          }
+        },
+        "positions" : {
+          "type" : "arrauy",
+          "properties" : {
+            "id" : "int",
+            "latitude" : "float",
+            "longitude" : "float",
+            "speed" : "int",
+            "created_at" : "date_time"
+          }
+        }
+      }
+    },
+    "AlertConditions" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "tenant_id" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "model" : {
+          "type" : "string",
+          "description" : "Model namespace"
+        },
+        "model_id" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "type" : {
+          "type" : "string",
+          "description" : "Condition type",
+          "enum" : [ "origin_min_arrival", "origin_max_arrival", "destination_min_arrival", "destination_max_arrival", "shipment_min_temperature", "shipment_max_temperature", "shipment_later_arrival" ]
+        },
+        "value" : {
+          "type" : "string",
+          "description" : "Limit value. Number or time"
+        },
+        "max_time_with_wrong_value" : {
+          "type" : "time"
+        },
+        "status" : {
+          "type" : "string",
+          "description" : "Type of advice",
+          "enum" : [ "alarm", "warn" ]
+        },
+        "communication_via" : {
+          "type" : "string",
+          "description" : "Method of contact",
+          "enum" : [ "email" ]
+        },
+        "to_all" : {
+          "type" : "string"
+        },
+        "to_responsable" : {
+          "type" : "string"
+        },
+        "to_origin" : {
+          "type" : "string"
+        },
+        "to_destination" : {
+          "type" : "string"
+        },
+        "to_operating_company" : {
+          "type" : "string"
+        },
+        "to_drive" : {
+          "type" : "string"
+        }
+      }
+    },
+    "PositionDTO" : {
+      "type" : "object",
+      "allOf" : [ {
+        "$ref" : "#/definitions/TelemetricsBaseDTO"
+      } ],
+      "properties" : {
+        "latitude" : {
+          "type" : "number"
+        },
+        "longitude" : {
+          "type" : "number"
+        },
+        "speed" : {
+          "type" : "number"
+        },
+        "speed_units" : {
+          "type" : "string",
+          "enum" : [ "metric", "imperial" ]
+        }
+      }
+    },
+    "TelemetricDTO" : {
+      "type" : "object",
+      "allOf" : [ {
+        "$ref" : "#/definitions/TelemetricsBaseDTO"
+      } ],
+      "properties" : {
+        "type" : {
+          "type" : "string",
+          "enum" : [ "CELSIUS_TEMPERATURE_TYPE", "FAHRENHEIT_TEMPERATURE_TYPE", "HUMIDITY_TYPE" ]
+        },
+        "value" : {
+          "type" : "number"
+        }
+      }
+    },
+    "TelemetricsBaseDTO" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "sensor_num" : {
+          "type" : "integer"
+        },
+        "model_type" : {
+          "type" : "string"
+        },
+        "model_id" : {
+          "type" : "integer"
+        },
+        "created_at" : {
+          "type" : "string",
+          "format" : "date-time"
+        }
+      }
+    }
+  },
+  "externalDocs" : {
+    "description" : "Find out more about Hardman.app",
+    "url" : "http://hardman.app"
+  },
+  "schemes" : [ "https" ],
+  "servers" : [ {
+    "description" : "SwaggerHub API Auto Mocking",
+    "url" : "https://virtserver.swaggerhub.com/HelloHardman/HardmanAppIntegration/v3"
+  }, {
+    "description" : "SwaggerHub API Auto Mocking",
+    "url" : "https://my-api.hardman.app/v3/api"
+  } ]
+}
