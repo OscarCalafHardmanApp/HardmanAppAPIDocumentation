@@ -413,12 +413,12 @@
         } ]
       }
     },
-    "/telemetrics/plate/position/plateId" : {
+    "/sensor-metric/last/plate/position/plate" : {
       "get" : {
         "tags" : [ "telemetrics" ],
-        "summary" : "Get last position for a plateId",
+        "summary" : "Get last position for a plate",
         "parameters" : [ {
-          "name" : "plateId",
+          "name" : "plate",
           "in" : "query",
           "description" : "Plate value. It's not the id of the vehicle, it is the value of the plate.",
           "required" : true,
@@ -447,12 +447,12 @@
         } ]
       }
     },
-    "/telemetrics/plate/temperature/plateId" : {
+    "/sensor-metric/last/plate/temperature/plate" : {
       "get" : {
         "tags" : [ "telemetrics" ],
-        "summary" : "Get last temperature read for a plateId",
+        "summary" : "Get last temperature read for a plate",
         "parameters" : [ {
-          "name" : "plateId",
+          "name" : "plate",
           "in" : "query",
           "description" : "Plate value. It's not the id of the vehicle, it is the value of the plate.",
           "required" : true,
@@ -482,12 +482,12 @@
         } ]
       }
     },
-    "/telemetrics/plate/humidity/plateId" : {
+    "/sensor-metric/last/plate/humidity/plate" : {
       "get" : {
         "tags" : [ "telemetrics" ],
         "summary" : "The last temperature read of the plate",
         "parameters" : [ {
-          "name" : "plateId",
+          "name" : "plate",
           "in" : "query",
           "description" : "Plate value. It's not the id of the vehicle, it is the value of the plate.",
           "required" : true,
