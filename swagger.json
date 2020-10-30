@@ -437,49 +437,6 @@
           "ApiKey" : [ ]
         } ]
       }
-    },
-    "/sensor-metricssensor-metrics?param1_key=paramKeyValue,date_start=dateFromValue,date_end=dateToValue" : {
-      "get" : {
-        "tags" : [ "telemetrics" ],
-        "summary" : {
-          "View telemetry of an object" : null
-        },
-        "produces" : [ "application/json" ],
-        "parameters" : {
-          "paramKeyValue" : {
-            "description" : "param1_key = string device/travel/shipment/regno param1_value = id of object",
-            "required" : true
-          },
-          "dateFromValue" : {
-            "description" : "datetime to start search",
-            "required" : true
-          },
-          "dateToValue" : {
-            "description" : "datetime to end search",
-            "required" : false
-          }
-        },
-        "responses" : {
-          "200" : {
-            "description" : "successful operation",
-            "schema" : {
-              "type" : "array",
-              "items" : {
-                "$ref" : "#/definitions/Telemetries"
-              }
-            }
-          },
-          "422" : {
-            "description" : "The given data was invalid"
-          },
-          "400" : {
-            "description" : "Object not found or cannot access to this sensor metrics"
-          }
-        },
-        "security" : [ {
-          "ApiKey" : [ ]
-        } ]
-      }
     }
   },
   "securityDefinitions" : {
