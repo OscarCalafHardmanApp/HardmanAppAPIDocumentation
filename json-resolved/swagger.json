@@ -1,0 +1,402 @@
+{
+  "openapi" : "3.0.0",
+  "info" : {
+    "title" : "HardmanApp API documentation",
+    "description" : "HardmanApp API\n",
+    "termsOfService" : "http://hardman.app",
+    "contact" : {
+      "email" : "hello@hardman.app"
+    },
+    "license" : {
+      "name" : "Apache 2.0",
+      "url" : "http://www.apache.org/licenses/LICENSE-2.0.html"
+    },
+    "version" : "v3"
+  },
+  "externalDocs" : {
+    "description" : "Find out more about Hardman.app",
+    "url" : "http://hardman.app"
+  },
+  "servers" : [ {
+    "url" : "https://my-api.hardman.app/v3",
+    "description" : "Hardman API description"
+  }, {
+    "url" : "https://virtserver.swaggerhub.com/HelloHardman/HardmanAppIntegration/v3",
+    "description" : "SwaggerHub API Auto Mocking"
+  } ],
+  "tags" : [ {
+    "name" : "shipments",
+    "description" : "Everything about shipments"
+  }, {
+    "name" : "routes",
+    "description" : "Everything about routes"
+  }, {
+    "name" : "phases",
+    "description" : "Everything about phases"
+  }, {
+    "name" : "telemetrics",
+    "description" : "Everythin about telemetrics"
+  } ],
+  "paths" : {
+    "/travels" : {
+      "get" : {
+        "tags" : [ "routes" ],
+        "summary" : "Get all the routes",
+        "responses" : {
+          "200" : {
+            "description" : "successful operation"
+          },
+          "405" : {
+            "description" : "Invalid input"
+          }
+        },
+        "security" : [ {
+          "ApiKey" : [ ]
+        } ]
+      },
+      "put" : {
+        "tags" : [ "routes" ],
+        "summary" : "Modify a route",
+        "operationId" : "updateRoute",
+        "parameters" : [ ],
+        "responses" : {
+          "402" : {
+            "description" : "Object not found"
+          },
+          "405" : {
+            "description" : "Validation exception"
+          }
+        },
+        "security" : [ {
+          "ApiKey" : [ ]
+        } ]
+      },
+      "post" : {
+        "tags" : [ "routes" ],
+        "summary" : "Create a route",
+        "operationId" : "createRoute",
+        "parameters" : [ ],
+        "responses" : {
+          "405" : {
+            "description" : "Validation exception"
+          }
+        },
+        "security" : [ {
+          "ApiKey" : [ ]
+        } ]
+      }
+    },
+    "/travels/id" : {
+      "get" : {
+        "tags" : [ "routes" ],
+        "summary" : "Get the route with a specific id",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "query",
+          "description" : "The route id",
+          "required" : true,
+          "style" : "form",
+          "explode" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation"
+          },
+          "405" : {
+            "description" : "Invalid input"
+          }
+        },
+        "security" : [ {
+          "ApiKey" : [ ]
+        } ]
+      },
+      "delete" : {
+        "tags" : [ "routes" ],
+        "summary" : "Delete a route",
+        "operationId" : "deleteRoute",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "query",
+          "description" : "The route id",
+          "required" : true,
+          "style" : "form",
+          "explode" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation"
+          },
+          "402" : {
+            "description" : "Object not found"
+          },
+          "405" : {
+            "description" : "Validation exception"
+          }
+        },
+        "security" : [ {
+          "ApiKey" : [ ]
+        } ]
+      }
+    },
+    "/phases/routeId" : {
+      "get" : {
+        "tags" : [ "phases" ],
+        "summary" : "Get all the phases for a specific route",
+        "parameters" : [ {
+          "name" : "routeId",
+          "in" : "query",
+          "description" : "The route id",
+          "required" : true,
+          "style" : "form",
+          "explode" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation"
+          },
+          "405" : {
+            "description" : "Invalid input"
+          }
+        },
+        "security" : [ {
+          "ApiKey" : [ ]
+        } ]
+      }
+    },
+    "/phases/routeId/phaseId" : {
+      "get" : {
+        "tags" : [ "phases" ],
+        "summary" : "Get the a specific phase for a specific route",
+        "parameters" : [ {
+          "name" : "routeId",
+          "in" : "query",
+          "description" : "The route id",
+          "required" : true,
+          "style" : "form",
+          "explode" : true
+        }, {
+          "name" : "phaseId",
+          "in" : "query",
+          "description" : "The phase id",
+          "required" : true,
+          "style" : "form",
+          "explode" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation"
+          },
+          "405" : {
+            "description" : "Invalid input"
+          }
+        },
+        "security" : [ {
+          "ApiKey" : [ ]
+        } ]
+      }
+    },
+    "/phases" : {
+      "put" : {
+        "tags" : [ "phases" ],
+        "summary" : "Modify a phase",
+        "operationId" : "updatePhase",
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation"
+          },
+          "402" : {
+            "description" : "Object not found"
+          },
+          "405" : {
+            "description" : "Validation exception"
+          }
+        },
+        "security" : [ {
+          "ApiKey" : [ ]
+        } ]
+      },
+      "post" : {
+        "tags" : [ "phases" ],
+        "summary" : "Create a phase",
+        "operationId" : "createPhase",
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation"
+          },
+          "405" : {
+            "description" : "Validation exception"
+          }
+        },
+        "security" : [ {
+          "ApiKey" : [ ]
+        } ]
+      }
+    },
+    "/phases/phaseId" : {
+      "get" : {
+        "tags" : [ "phases" ],
+        "summary" : "Get the a specific phase",
+        "parameters" : [ {
+          "name" : "phaseId",
+          "in" : "query",
+          "description" : "The phase id",
+          "required" : true,
+          "style" : "form",
+          "explode" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation"
+          },
+          "405" : {
+            "description" : "Invalid input"
+          }
+        },
+        "security" : [ {
+          "ApiKey" : [ ]
+        } ]
+      },
+      "delete" : {
+        "tags" : [ "phases" ],
+        "summary" : "Delete a phase",
+        "operationId" : "deletePhase",
+        "parameters" : [ {
+          "name" : "phaseId",
+          "in" : "query",
+          "description" : "The phase id",
+          "required" : true,
+          "style" : "form",
+          "explode" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation"
+          },
+          "402" : {
+            "description" : "Object not found"
+          },
+          "405" : {
+            "description" : "Validation exception"
+          }
+        },
+        "security" : [ {
+          "ApiKey" : [ ]
+        } ]
+      }
+    },
+    "/shipments" : {
+      "get" : {
+        "tags" : [ "shipments" ],
+        "summary" : "Get all the shipments",
+        "responses" : {
+          "200" : {
+            "description" : "successful operation"
+          },
+          "405" : {
+            "description" : "Invalid input"
+          }
+        },
+        "security" : [ {
+          "ApiKey" : [ ]
+        } ]
+      }
+    },
+    "/shipments/internal/internal_id" : {
+      "get" : {
+        "tags" : [ "shipments" ],
+        "summary" : "Get shipment with this internal_id",
+        "responses" : {
+          "200" : {
+            "description" : "successful operation"
+          }
+        },
+        "security" : [ {
+          "ApiKey" : [ ]
+        } ]
+      }
+    },
+    "/travels/internal/reference" : {
+      "get" : {
+        "tags" : [ "routes" ],
+        "summary" : "Get route with this reference",
+        "responses" : {
+          "200" : {
+            "description" : "successful operation"
+          }
+        },
+        "security" : [ {
+          "ApiKey" : [ ]
+        } ]
+      }
+    },
+    "/telemetrics/plate/position/plateId" : {
+      "get" : {
+        "tags" : [ "telemetrics" ],
+        "summary" : "Get last position for a plateId",
+        "parameters" : [ {
+          "name" : "plateId",
+          "in" : "query",
+          "description" : "Plate value. It's not the id of the vehicle, it is the value of the plate.",
+          "required" : true,
+          "style" : "form",
+          "explode" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation"
+          }
+        },
+        "security" : [ {
+          "ApiKey" : [ ]
+        } ]
+      }
+    },
+    "/telemetrics/plate/temperature/plateId" : {
+      "get" : {
+        "tags" : [ "telemetrics" ],
+        "summary" : "Get last temperature read for a plateId",
+        "parameters" : [ {
+          "name" : "plateId",
+          "in" : "query",
+          "description" : "Plate value. It's not the id of the vehicle, it is the value of the plate.",
+          "required" : true,
+          "style" : "form",
+          "explode" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation"
+          }
+        },
+        "security" : [ {
+          "ApiKey" : [ ]
+        } ]
+      }
+    },
+    "/telemetrics/plate/humidity/plateId" : {
+      "get" : {
+        "tags" : [ "telemetrics" ],
+        "summary" : "The last temperature read of the plate",
+        "parameters" : [ {
+          "name" : "plateId",
+          "in" : "query",
+          "description" : "Plate value. It's not the id of the vehicle, it is the value of the plate.",
+          "required" : true,
+          "style" : "form",
+          "explode" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation"
+          }
+        },
+        "security" : [ {
+          "ApiKey" : [ ]
+        } ]
+      }
+    }
+  },
+  "components" : { }
+}
