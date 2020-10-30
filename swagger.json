@@ -1025,6 +1025,9 @@
     "url" : "https://virtserver.swaggerhub.com/HelloHardman/HardmanAppIntegration/v3"
   }, {
     "description" : "SwaggerHub API Auto Mocking",
+    "url" : "https://my-api.hardman.app/v3"
+  }, {
+    "description" : "SwaggerHub API Auto Mocking",
     "url" : "https://my-api.hardman.app/v3/api"
   }, {
     "description" : "SwaggerHub API Auto Mocking",
