@@ -424,19 +424,22 @@
           "required" : true,
           "type" : "string"
         } ],
-        "produces" : [ "aplication/json" ],
         "responses" : {
           "200" : {
             "description" : "successful operation",
-            "schema" : {
-              "$ref" : "#/definitions/PositionDTO"
-            },
-            "422" : {
-              "description" : "The given data was invalid"
-            },
-            "400" : {
-              "description" : "Object not found or cannot access to this sensor metrics"
+            "content" : {
+              "aplication/json" : {
+                "schema" : {
+                  "$ref" : "#/definitions/PositionDTO"
+                }
+              }
             }
+          },
+          "422" : {
+            "description" : "The given data was invalid"
+          },
+          "400" : {
+            "description" : "Object not found or cannot access to this sensor metrics"
           }
         },
         "security" : [ {
