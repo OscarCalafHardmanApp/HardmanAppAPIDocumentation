@@ -17,7 +17,7 @@
   "basePath" : "/api/v2",
   "servers" : [ {
     "description" : "Hardman API description",
-    "url" : "https://my-api.hardman.app/v3"
+    "url" : "https://my-api.hardman.app/api/v2"
   }, {
     "description" : "SwaggerHub API Auto Mocking",
     "url" : "https://virtserver.swaggerhub.com/HelloHardman/HardmanAppIntegration/v3"
