@@ -14,7 +14,7 @@
     }
   },
   "host" : "my-api.hardman.app",
-  "basePath" : "/api/v3",
+  "basePath" : "/api/v2",
   "servers" : [ {
     "description" : "Hardman API description",
     "url" : "https://my-api.hardman.app/v3"
@@ -1186,5 +1186,18 @@
     "description" : "Find out more about Hardman.app",
     "url" : "http://hardman.app"
   },
-  "schemes" : [ "https" ]
+  "schemes" : [ "https" ],
+  "components" : {
+    "schemas" : {
+      "Schema" : {
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "type" : "integer",
+            "format" : "int64"
+          }
+        }
+      }
+    }
+  }
 }
