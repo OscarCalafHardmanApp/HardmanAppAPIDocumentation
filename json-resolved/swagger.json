@@ -18,7 +18,7 @@
     "url" : "http://hardman.app"
   },
   "servers" : [ {
-    "url" : "https://my-api.hardman.app/v3",
+    "url" : "https://my-api.hardman.app/api/v2",
     "description" : "Hardman API description"
   }, {
     "url" : "https://virtserver.swaggerhub.com/HelloHardman/HardmanAppIntegration/v3",
@@ -366,6 +366,76 @@
         } ]
       }
     },
+    "/sensor-metric/last/deviceid/deviceId" : {
+      "get" : {
+        "tags" : [ "telemetrics" ],
+        "summary" : "Get last all telemetry for a deviceId",
+        "parameters" : [ {
+          "name" : "deviceId",
+          "in" : "query",
+          "description" : "Device ID",
+          "required" : true,
+          "style" : "form",
+          "explode" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "content" : {
+              "aplication/json" : {
+                "schema" : {
+                  "$ref" : "#/definitions/FullTelemetryDTO"
+                }
+              }
+            }
+          },
+          "422" : {
+            "description" : "The given data was invalid"
+          },
+          "400" : {
+            "description" : "Object not found or cannot access to this sensor metrics"
+          }
+        },
+        "security" : [ {
+          "ApiKey" : [ ]
+        } ]
+      }
+    },
+    "/sensor-metric/last/device/deviceName" : {
+      "get" : {
+        "tags" : [ "telemetrics" ],
+        "summary" : "Get last all telemetry for a device Name. Not the deviceId",
+        "parameters" : [ {
+          "name" : "deviceName",
+          "in" : "query",
+          "description" : "Device Name",
+          "required" : true,
+          "style" : "form",
+          "explode" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "content" : {
+              "aplication/json" : {
+                "schema" : {
+                  "$ref" : "#/definitions/FullTelemetryDTO"
+                }
+              }
+            }
+          },
+          "422" : {
+            "description" : "The given data was invalid"
+          },
+          "400" : {
+            "description" : "Object not found or cannot access to this sensor metrics"
+          }
+        },
+        "security" : [ {
+          "ApiKey" : [ ]
+        } ]
+      }
+    },
     "/sensor-metric/last/plate/position/PlateNumber" : {
       "get" : {
         "tags" : [ "telemetrics" ],
@@ -577,5 +647,17 @@
       }
     }
   },
-  "components" : { }
+  "components" : {
+    "schemas" : {
+      "Schema" : {
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "type" : "integer",
+            "format" : "int64"
+          }
+        }
+      }
+    }
+  }
 }
