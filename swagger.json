@@ -488,7 +488,7 @@
         "parameters" : [ {
           "name" : "deviceName",
           "in" : "query",
-          "description" : "Device Name",
+          "description" : "Device Name. Imei for Teltonika devices, plate number for Carrier and CargoBull",
           "required" : true,
           "type" : "string"
         } ],
