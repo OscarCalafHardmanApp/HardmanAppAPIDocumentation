@@ -416,7 +416,7 @@
     "/travels/status/{id}/{status}" : {
       "put" : {
         "tags" : [ "routes" ],
-        "summary" : "Update travel status",
+        "summary" : "Update route status",
         "parameters" : [ {
           "name" : "id",
           "description" : "id route",
@@ -424,7 +424,7 @@
           "type" : "number"
         }, {
           "name" : "status",
-          "descrition" : "New travel status. Draft, Completed, Archived, Cancelled, Cancelled_Archived, Sent, Received",
+          "descrition" : "New route status. Draft, Completed, Archived, Cancelled, Cancelled_Archived, Sent, Received",
           "required" : true,
           "type" : "string"
         } ],
@@ -441,6 +441,9 @@
           },
           "403" : {
             "description" : "This action can not be performed"
+          },
+          "400" : {
+            "description" : "Route not found"
           }
         },
         "security" : {
