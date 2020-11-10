@@ -413,6 +413,41 @@
         } ]
       }
     },
+    "/travels/status/{id}/{status}" : {
+      "put" : {
+        "tags" : [ "routes" ],
+        "summary" : "Update travel status",
+        "parameters" : [ {
+          "name" : "id",
+          "description" : "id route",
+          "required" : true,
+          "type" : "number"
+        }, {
+          "name" : "status",
+          "descrition" : "New travel status. Draft, Completed, Archived, Cancelled, Cancelled_Archived, Sent, Received",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "succesful operation",
+            "content" : {
+              "aplication/json" : {
+                "schema" : {
+                  "$ref" : "#/definitions/Route"
+                }
+              }
+            }
+          },
+          "403" : {
+            "description" : "This action can not be performed"
+          }
+        },
+        "security" : {
+          "-ApiKey" : [ ]
+        }
+      }
+    },
     "/sensor-metric/last/plate/PlateNumber" : {
       "get" : {
         "tags" : [ "telemetrics" ],
