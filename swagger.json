@@ -553,6 +553,40 @@
         } ]
       }
     },
+    "/sensor-metric/last/internal_code/internalCode" : {
+      "get" : {
+        "tags" : [ "telemetrics" ],
+        "summary" : "Get last telemetries for internalCode",
+        "parametres" : [ {
+          "name" : "internalCode",
+          "in" : "query",
+          "description" : "Internal code for devices",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "content" : {
+              "aplication/json" : {
+                "schema" : {
+                  "$ref" : "#definitions/FullTelemetryDTO"
+                }
+              }
+            }
+          },
+          "422" : {
+            "description" : "The given data was invalid"
+          },
+          "400" : {
+            "description" : "Object not found or cannot acces to his sensor metrics"
+          }
+        },
+        "security" : [ {
+          "ApiKey" : [ ]
+        } ]
+      }
+    },
     "/sensor-metric/last/plate/position/PlateNumber" : {
       "get" : {
         "tags" : [ "telemetrics" ],
@@ -1284,6 +1318,41 @@
         "created_at" : {
           "type" : "string",
           "format" : "date-time"
+        }
+      }
+    },
+    "TelemetryForInternalCode" : {
+      "type" : "object",
+      "properties" : {
+        "device" : {
+          "$ref" : "#definitions/DeviceSimple"
+        },
+        "position" : {
+          "$ref" : "#/definitions/PositionDTO"
+        },
+        "humidity" : {
+          "$ref" : "#/definitions/TelemetricDTO"
+        },
+        "temperature" : {
+          "$ref" : "#/definitions/TelemetricDTO"
+        }
+      }
+    },
+    "DeviceSimple" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "label" : {
+          "type" : "string"
+        },
+        "identifier" : {
+          "type" : "string"
+        },
+        "internal_code" : {
+          "type" : "string"
         }
       }
     }
