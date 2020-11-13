@@ -569,8 +569,9 @@
             "description" : "successful operation",
             "content" : {
               "aplication/json" : {
+                "type" : "array",
                 "schema" : {
-                  "$ref" : "#definitions/FullTelemetryDTO"
+                  "$ref" : "#definitions/TelemetryForInternalCode"
                 }
               }
             }
