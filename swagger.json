@@ -467,15 +467,16 @@
       "get" : {
         "tags" : [ "telemetrics" ],
         "summary" : "Get last all telemetry for all the plates",
-        "parameters" : null,
         "responses" : {
           "200" : {
             "description" : "successful operation",
             "content" : {
               "aplication/json" : {
-                "type" : "array",
                 "schema" : {
-                  "$ref" : "#definitions/TelemetryForPlate"
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/definitions/TelemetryForPlate"
+                  }
                 }
               }
             }
