@@ -76,7 +76,7 @@
         "consumes" : [ "application/json" ],
         "produces" : [ "application/json" ],
         "parameters" : [ {
-          "in" : "body",
+          "in" : "query",
           "name" : "body",
           "description" : "Route object that needs to be added",
           "required" : true,
@@ -100,7 +100,7 @@
         "consumes" : [ "application/json" ],
         "produces" : [ "application/json" ],
         "parameters" : [ {
-          "in" : "body",
+          "in" : "query",
           "name" : "body",
           "description" : "Route object that needs to be updated",
           "required" : true,
@@ -179,14 +179,14 @@
         } ]
       }
     },
-    "/phases/routeId" : {
+    "/phases/{routeId}" : {
       "get" : {
         "tags" : [ "phases" ],
         "summary" : "Get all the phases for a specific route",
         "produces" : [ "application/json" ],
         "parameters" : [ {
+          "in" : "path",
           "name" : "routeId",
-          "in" : "query",
           "description" : "The route id",
           "required" : true,
           "type" : "string"
