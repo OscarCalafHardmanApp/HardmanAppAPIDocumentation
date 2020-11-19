@@ -475,7 +475,7 @@
               "aplication/json" : {
                 "type" : "array",
                 "schema" : {
-                  "$ref" : "#definitions/TelemetryForInternalCode"
+                  "$ref" : "#definitions/TelemetryForPlate"
                 }
               }
             }
