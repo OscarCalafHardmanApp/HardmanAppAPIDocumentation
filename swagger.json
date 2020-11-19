@@ -35,6 +35,13 @@
     "name" : "telemetrics",
     "description" : "Everythin about telemetrics"
   } ],
+  "securityDefinitions" : {
+    "ApiKey" : {
+      "type" : "apiKey",
+      "in" : "header",
+      "name" : "api_key"
+    }
+  },
   "paths" : {
     "/travels" : {
       "get" : {
@@ -456,6 +463,34 @@
         }
       }
     },
+    "/sensor-metric/last/all/" : {
+      "get" : {
+        "tags" : [ "telemetrics" ],
+        "summary" : "Get last all telemetry for all the plates",
+        "parameters" : null,
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "content" : {
+              "aplication/json" : {
+                "schema" : {
+                  "$ref" : "#/definitions/FullTelemetryDTO"
+                }
+              }
+            }
+          },
+          "422" : {
+            "description" : "The given data was invalid"
+          },
+          "400" : {
+            "description" : "Object not found or cannot access to this sensor metrics"
+          }
+        },
+        "security" : [ {
+          "ApiKey" : [ ]
+        } ]
+      }
+    },
     "/sensor-metric/last/plate/{PlateNumber}" : {
       "get" : {
         "tags" : [ "telemetrics" ],
@@ -806,13 +841,6 @@
       }
     }
   },
-  "securityDefinitions" : {
-    "ApiKey" : {
-      "type" : "apiKey",
-      "in" : "header",
-      "name" : "api_key"
-    }
-  },
   "definitions" : {
     "Route" : {
       "type" : "object",
@@ -1096,6 +1124,19 @@
       },
       "xml" : {
         "name" : "ShipmenSimple"
+      }
+    },
+    "Plate" : {
+      "type" : "object",
+      "required" : [ "id" ],
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "name" : {
+          "plate" : "string"
+        }
       }
     },
     "Address" : {
