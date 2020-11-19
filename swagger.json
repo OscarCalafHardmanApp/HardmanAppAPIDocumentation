@@ -39,7 +39,7 @@
     "ApiKey" : {
       "type" : "apiKey",
       "in" : "header",
-      "name" : "api_key"
+      "name" : "Authorization"
     }
   },
   "paths" : {
