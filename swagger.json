@@ -492,16 +492,18 @@
         } ]
       }
     },
-    "/sensor-metric/last/deviceid/deviceId" : {
+    "/sensor-metric/last/deviceid/{deviceId}" : {
       "get" : {
         "tags" : [ "telemetrics" ],
         "summary" : "Get last all telemetry for a deviceId",
         "parameters" : [ {
+          "in" : "path",
           "name" : "deviceId",
-          "in" : "query",
           "description" : "Device ID",
           "required" : true,
-          "type" : "string"
+          "schema" : {
+            "type" : "string"
+          }
         } ],
         "responses" : {
           "200" : {
