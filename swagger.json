@@ -564,13 +564,13 @@
         } ]
       }
     },
-    "/sensor-metric/last/device/deviceName" : {
+    "/sensor-metric/last/device/{deviceName}" : {
       "get" : {
         "tags" : [ "telemetrics" ],
         "summary" : "Get last all telemetry for a device Name. Not the deviceId",
         "parameters" : [ {
+          "in" : "path",
           "name" : "deviceName",
-          "in" : "query",
           "description" : "Device Name. Imei for Teltonika devices, plate number for Carrier and CargoBull",
           "required" : true,
           "type" : "string"
