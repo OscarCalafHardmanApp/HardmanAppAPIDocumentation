@@ -114,17 +114,19 @@
         } ]
       }
     },
-    "/travels/id" : {
+    "/travels/{id}" : {
       "get" : {
         "tags" : [ "routes" ],
         "summary" : "Get the route with a specific id",
         "produces" : [ "application/json" ],
         "parameters" : [ {
+          "in" : "path",
           "name" : "id",
-          "in" : "query",
-          "description" : "The route id",
           "required" : true,
-          "type" : "string"
+          "description" : "The route id",
+          "schema" : {
+            "type" : "string"
+          }
         } ],
         "responses" : {
           "200" : {
@@ -146,11 +148,13 @@
         "summary" : "Delete a route",
         "operationId" : "deleteRoute",
         "parameters" : [ {
+          "in" : "path",
           "name" : "id",
-          "in" : "query",
-          "description" : "The route id",
           "required" : true,
-          "type" : "string"
+          "description" : "The route id",
+          "schema" : {
+            "type" : "string"
+          }
         } ],
         "responses" : {
           "200" : {
