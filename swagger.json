@@ -463,7 +463,7 @@
         }
       }
     },
-    "/sensor-metric/last/all/" : {
+    "/sensor-metric/last/all" : {
       "get" : {
         "tags" : [ "telemetrics" ],
         "summary" : "Get last all telemetry for all the plates",
@@ -473,8 +473,9 @@
             "description" : "successful operation",
             "content" : {
               "aplication/json" : {
+                "type" : "array",
                 "schema" : {
-                  "$ref" : "#/definitions/FullTelemetryDTO"
+                  "$ref" : "#definitions/TelemetryForInternalCode"
                 }
               }
             }
@@ -1376,7 +1377,7 @@
       "type" : "object",
       "properties" : {
         "device" : {
-          "$ref" : "#definitions/DeviceSimple"
+          "$ref" : "#/definitions/DeviceSimple"
         },
         "position" : {
           "$ref" : "#/definitions/PositionDTO"
@@ -1386,6 +1387,20 @@
         },
         "temperature" : {
           "$ref" : "#/definitions/TelemetricDTO"
+        }
+      }
+    },
+    "TelemetryForPlate" : {
+      "type" : "object",
+      "properties" : {
+        "plate" : {
+          "$ref" : "#/definitions/Plate"
+        },
+        "telemetrics" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/FullTelemetryDTO"
+          }
         }
       }
     },
