@@ -456,16 +456,18 @@
         }
       }
     },
-    "/sensor-metric/last/plate/PlateNumber" : {
+    "/sensor-metric/last/plate/{PlateNumber}" : {
       "get" : {
         "tags" : [ "telemetrics" ],
         "summary" : "Get last all telemetry for a plate number",
         "parameters" : [ {
+          "in" : "path",
           "name" : "PlateNumber",
-          "in" : "query",
-          "description" : "Plate value. It's not the id of the vehicle, it is the value of the plate.",
           "required" : true,
-          "type" : "string"
+          "description" : "Plate value. It's not the id of the vehicle, it is the value of the plate.",
+          "schema" : {
+            "type" : "string"
+          }
         } ],
         "responses" : {
           "200" : {
