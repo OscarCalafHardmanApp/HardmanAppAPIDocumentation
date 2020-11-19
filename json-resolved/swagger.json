@@ -44,7 +44,17 @@
         "summary" : "Get all the routes",
         "responses" : {
           "200" : {
-            "description" : "successful operation"
+            "description" : "successful operation",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/definitions/RouteSimple"
+                  }
+                }
+              }
+            }
           },
           "405" : {
             "description" : "Invalid input"
@@ -58,7 +68,17 @@
         "tags" : [ "routes" ],
         "summary" : "Modify a route",
         "operationId" : "updateRoute",
-        "parameters" : [ ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "query",
+          "description" : "Route object that needs to be updated",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "$ref" : "#/definitions/Route"
+          }
+        } ],
         "responses" : {
           "402" : {
             "description" : "Object not found"
@@ -75,7 +95,17 @@
         "tags" : [ "routes" ],
         "summary" : "Create a route",
         "operationId" : "createRoute",
-        "parameters" : [ ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "query",
+          "description" : "Route object that needs to be added",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "$ref" : "#/definitions/Route"
+          }
+        } ],
         "responses" : {
           "405" : {
             "description" : "Validation exception"
@@ -86,17 +116,20 @@
         } ]
       }
     },
-    "/travels/id" : {
+    "/travels/{id}" : {
       "get" : {
         "tags" : [ "routes" ],
         "summary" : "Get the route with a specific id",
         "parameters" : [ {
           "name" : "id",
-          "in" : "query",
+          "in" : "path",
           "description" : "The route id",
           "required" : true,
-          "style" : "form",
-          "explode" : true
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
         } ],
         "responses" : {
           "200" : {
@@ -116,11 +149,14 @@
         "operationId" : "deleteRoute",
         "parameters" : [ {
           "name" : "id",
-          "in" : "query",
+          "in" : "path",
           "description" : "The route id",
           "required" : true,
-          "style" : "form",
-          "explode" : true
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
         } ],
         "responses" : {
           "200" : {
@@ -138,17 +174,17 @@
         } ]
       }
     },
-    "/phases/routeId" : {
+    "/phases/{routeId}" : {
       "get" : {
         "tags" : [ "phases" ],
         "summary" : "Get all the phases for a specific route",
         "parameters" : [ {
           "name" : "routeId",
-          "in" : "query",
+          "in" : "path",
           "description" : "The route id",
           "required" : true,
-          "style" : "form",
-          "explode" : true
+          "style" : "simple",
+          "explode" : false
         } ],
         "responses" : {
           "200" : {
@@ -331,17 +367,75 @@
         } ]
       }
     },
-    "/sensor-metric/last/plate/PlateNumber" : {
+    "/travels/status/{id}/{status}" : {
+      "put" : {
+        "tags" : [ "routes" ],
+        "summary" : "Update route status",
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "succesful operation",
+            "content" : {
+              "aplication/json" : {
+                "schema" : {
+                  "$ref" : "#/definitions/Route"
+                }
+              }
+            }
+          },
+          "403" : {
+            "description" : "This action can not be performed"
+          },
+          "400" : {
+            "description" : "Route not found"
+          }
+        }
+      }
+    },
+    "/sensor-metric/last/all" : {
+      "get" : {
+        "tags" : [ "telemetrics" ],
+        "summary" : "Get last all telemetry for all the plates",
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "content" : {
+              "aplication/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/definitions/TelemetryForPlate"
+                  }
+                }
+              }
+            }
+          },
+          "422" : {
+            "description" : "The given data was invalid"
+          },
+          "400" : {
+            "description" : "Object not found or cannot access to this sensor metrics"
+          }
+        },
+        "security" : [ {
+          "ApiKey" : [ ]
+        } ]
+      }
+    },
+    "/sensor-metric/last/plate/{PlateNumber}" : {
       "get" : {
         "tags" : [ "telemetrics" ],
         "summary" : "Get last all telemetry for a plate number",
         "parameters" : [ {
           "name" : "PlateNumber",
-          "in" : "query",
+          "in" : "path",
           "description" : "Plate value. It's not the id of the vehicle, it is the value of the plate.",
           "required" : true,
-          "style" : "form",
-          "explode" : true
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
         } ],
         "responses" : {
           "200" : {
@@ -366,17 +460,20 @@
         } ]
       }
     },
-    "/sensor-metric/last/deviceid/deviceId" : {
+    "/sensor-metric/last/deviceid/{deviceId}" : {
       "get" : {
         "tags" : [ "telemetrics" ],
         "summary" : "Get last all telemetry for a deviceId",
         "parameters" : [ {
           "name" : "deviceId",
-          "in" : "query",
+          "in" : "path",
           "description" : "Device ID",
           "required" : true,
-          "style" : "form",
-          "explode" : true
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
         } ],
         "responses" : {
           "200" : {
@@ -401,17 +498,17 @@
         } ]
       }
     },
-    "/sensor-metric/last/device/deviceName" : {
+    "/sensor-metric/last/device/{deviceName}" : {
       "get" : {
         "tags" : [ "telemetrics" ],
         "summary" : "Get last all telemetry for a device Name. Not the deviceId",
         "parameters" : [ {
           "name" : "deviceName",
-          "in" : "query",
-          "description" : "Device Name",
+          "in" : "path",
+          "description" : "Device Name. Imei for Teltonika devices, plate number for Carrier and CargoBull",
           "required" : true,
-          "style" : "form",
-          "explode" : true
+          "style" : "simple",
+          "explode" : false
         } ],
         "responses" : {
           "200" : {
@@ -429,6 +526,33 @@
           },
           "400" : {
             "description" : "Object not found or cannot access to this sensor metrics"
+          }
+        },
+        "security" : [ {
+          "ApiKey" : [ ]
+        } ]
+      }
+    },
+    "/sensor-metric/last/internal_code/internalCode" : {
+      "get" : {
+        "tags" : [ "telemetrics" ],
+        "summary" : "Get last telemetries for internalCode",
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "content" : {
+              "aplication/json" : {
+                "schema" : {
+                  "$ref" : "#definitions/TelemetryForInternalCode"
+                }
+              }
+            }
+          },
+          "422" : {
+            "description" : "The given data was invalid"
+          },
+          "400" : {
+            "description" : "Object not found or cannot acces to his sensor metrics"
           }
         },
         "security" : [ {
