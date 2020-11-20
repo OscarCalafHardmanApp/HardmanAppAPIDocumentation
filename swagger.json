@@ -1411,10 +1411,7 @@
           "$ref" : "#/definitions/Plate"
         },
         "telemetrics" : {
-          "type" : "array",
-          "items" : {
-            "$ref" : "#/definitions/FullTelemetryDTO"
-          }
+          "$ref" : "#/definitions/FullTelemetryDTO"
         }
       }
     },
