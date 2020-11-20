@@ -1149,8 +1149,8 @@
           "type" : "integer",
           "format" : "int64"
         },
-        "name" : {
-          "plate" : "string"
+        "plate" : {
+          "type" : "string"
         }
       }
     },
