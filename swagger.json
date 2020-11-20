@@ -74,7 +74,6 @@
         "summary" : "Create a route",
         "operationId" : "createRoute",
         "consumes" : [ "application/json" ],
-        "produces" : [ "application/json" ],
         "parameters" : [ {
           "in" : "query",
           "name" : "body",
@@ -84,6 +83,7 @@
             "$ref" : "#/definitions/Route"
           }
         } ],
+        "produces" : [ "application/json" ],
         "responses" : {
           "405" : {
             "description" : "Validation exception"
@@ -187,9 +187,11 @@
         "parameters" : [ {
           "in" : "path",
           "name" : "routeId",
-          "description" : "The route id",
           "required" : true,
-          "type" : "string"
+          "description" : "The route id",
+          "schema" : {
+            "type" : "string"
+          }
         } ],
         "responses" : {
           "200" : {
@@ -210,24 +212,18 @@
         } ]
       }
     },
-    "/phases/routeId/phaseId" : {
+    "/phases/routeId/{phaseId}" : {
       "get" : {
         "tags" : [ "phases" ],
         "summary" : "Get the a specific phase for a specific route",
-        "produces" : [ "application/json" ],
         "parameters" : [ {
-          "name" : "routeId",
-          "in" : "query",
-          "description" : "The route id",
-          "required" : true,
-          "type" : "string"
-        }, {
+          "in" : "path",
           "name" : "phaseId",
-          "in" : "query",
           "description" : "The phase id",
           "required" : true,
           "type" : "string"
         } ],
+        "produces" : [ "application/json" ],
         "responses" : {
           "200" : {
             "description" : "successful operation",
@@ -406,10 +402,19 @@
         } ]
       }
     },
-    "/travels/internal/reference" : {
+    "/travels/internal/{reference}" : {
       "get" : {
         "tags" : [ "routes" ],
         "summary" : "Get route with this reference",
+        "parameters" : [ {
+          "in" : "path",
+          "name" : "reference",
+          "description" : "reference of the route",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
         "produces" : [ "aplication/json" ],
         "responses" : {
           "200" : {
@@ -430,15 +435,21 @@
         "tags" : [ "routes" ],
         "summary" : "Update route status",
         "parameters" : [ {
+          "in" : "path",
           "name" : "id",
           "description" : "id route",
           "required" : true,
-          "type" : "number"
+          "schema" : {
+            "type" : "number"
+          }
         }, {
+          "in" : "path",
           "name" : "status",
-          "descrition" : "New route status. Draft, Completed, Archived, Cancelled, Cancelled_Archived, Sent, Received",
+          "description" : "New route status. Draft, Completed, Archived, Cancelled, Cancelled_Archived, Sent, Received",
           "required" : true,
-          "type" : "string"
+          "schema" : {
+            "type" : "string"
+          }
         } ],
         "responses" : {
           "200" : {
@@ -574,7 +585,9 @@
           "name" : "deviceName",
           "description" : "Device Name. Imei for Teltonika devices, plate number for Carrier and CargoBull",
           "required" : true,
-          "type" : "string"
+          "schema" : {
+            "type" : "string"
+          }
         } ],
         "responses" : {
           "200" : {
